@@ -1,9 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/mingo/.config/yazi
-    - /home/mingo/.config/zellij
     - /home/mingo/.config/nvim
     - /home/mingo/.config/lazygit
+    - /home/mingo/.local/share/chezmoi
+    - /home/mingo/.config/yazi
+    - /home/mingo/.config/zellij
     - /home/mingo/Code/retinafacenet
     - /home/mingo/Downloads/tokyonight.yazi
     - /home/mingo/.config/tmux

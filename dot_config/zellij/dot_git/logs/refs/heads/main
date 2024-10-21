@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 0bfc71300305a90d9f789ea84fee75e7afc6d43b mingo99 <2839131656@qq.com> 1728920527 +0800	commit (initial): first commit
-0bfc71300305a90d9f789ea84fee75e7afc6d43b 0bfc71300305a90d9f789ea84fee75e7afc6d43b mingo99 <2839131656@qq.com> 1728920533 +0800	Branch: renamed refs/heads/master to refs/heads/main
-0bfc71300305a90d9f789ea84fee75e7afc6d43b 6384439129d5c8869312670969ad0a2dafcff9d7 mingo99 <2839131656@qq.com> 1729003730 +0800	commit: conf: adjust key and modify behaviour of new pane
-6384439129d5c8869312670969ad0a2dafcff9d7 435009b1a172ee7c95d6311e38d3fd2e7aaa6380 mingo99 <2839131656@qq.com> 1729086967 +0800	commit: conf: disable keymap of conflict with keymaps of 'move line'
