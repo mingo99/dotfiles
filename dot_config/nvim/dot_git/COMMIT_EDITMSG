@@ -1,0 +1,4 @@
+conf: modify opt.shiftwidth
+
+- set default global shiftwidth to 4
+- set local shiftwidth of lua to 2

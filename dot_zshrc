@@ -1,0 +1,111 @@
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+zinit load "zsh-users/zsh-completions"
+zinit load "zsh-users/zsh-history-substring-search"
+zinit load "zsh-users/zsh-syntax-highlighting"
+
+### End of Zinit's installer chunk
+
+##########################################
+#####     System configuration    #######
+#########################################
+setopt EXTENDED_HISTORY
+setopt append_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+# Proxy
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=$http_proxy
+export all_proxy=socks5://127.0.0.1:7890
+export no_proxy="127.0.0.1,localhost,192.168.*.*,*.jd.com"
+
+set -o emacs
+bindkey -r "^P"
+bindkey -r "^N"
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=''
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
+for key ('^[[A' '^P') bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N') bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+
+# lib library
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+
+# Windows host app PATH
+export PATH=/mnt/c/Windows:$PATH
+export PATH=/mnt/c/Windows/System32:$PATH
+export PATH=/mnt/c/MyProgram/VScode/bin:$PATH
+
+# User configuration
+export TERM=tmux-256color
+export EDITOR='nvim'
+
+# Homebrew
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
+# Yazi
+bindkey -s '^Y' 'yazi\n'
+
+# cargo
+export PATH=$PATH:~/.cargo/bin
+
+# # fnm
+export XDG_RUNTIME_DIR="$HOME/.cache/xdgr"
+eval "$(fnm env --use-on-cd)"
+
+# fuzzy finder
+source ~/.fzfrc
+eval "$(fzf --zsh)"
+
+# zoxide
+eval "$(zoxide init zsh --cmd j)"
+
+# starship
+export STARSHIP_CONFIG=/home/mingo/.config/starship/starship.toml
+eval "$(starship init zsh)"
+
+# set ls_colors
+export LS_COLORS="$(vivid generate ~/.config/vivid/my_theme.yml)"
+
+# pfetch
+export PF_ASCII=linux
+
+# alias
+alias ls=lsd
+alias ll="ls -la"
+alias la="ls -a"
+alias lt="ls -t"
+
+alias t="tmux -u"
+alias p=pfetch
+alias ps=procs
+alias lg=lazygit
+alias z=zellij
+
+#########################################
+#####  Application configuration   ######
+#########################################
+export PATH="$PATH:/home/mingo/.local/bin"

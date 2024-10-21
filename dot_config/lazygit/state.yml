@@ -1,0 +1,24 @@
+lastupdatecheck: 0
+recentrepos:
+    - /home/mingo/.config/yazi
+    - /home/mingo/.config/zellij
+    - /home/mingo/.config/nvim
+    - /home/mingo/.config/lazygit
+    - /home/mingo/Code/retinafacenet
+    - /home/mingo/Downloads/tokyonight.yazi
+    - /home/mingo/.config/tmux
+    - /home/mingo/.config/vivid
+    - /home/mingo/.config/lsd
+startuppopupversion: 5
+lastversion: 0.44.1
+customcommandshistory:
+    - wq
+    - help
+hidecommandlog: true
+ignorewhitespaceindiffview: false
+diffcontextsize: 1
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
