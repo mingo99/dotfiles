@@ -1,3 +1,5 @@
+local cmdline_width = 80
+
 return {
   "folke/noice.nvim",
   opts = {
@@ -9,7 +11,7 @@ return {
           col = "50%",
         },
         size = {
-          width = 60,
+          width = cmdline_width,
           height = "auto",
         },
       },
@@ -20,7 +22,7 @@ return {
           col = "50%",
         }, -- when auto, then it will be positioned to the cmdline or cursor
         size = {
-          width = 60,
+          width = cmdline_width,
           height = 10,
         },
         win_options = {

@@ -1,19 +1,17 @@
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
+-- local lga_actions = require("telescope-live-grep-args.actions")
 
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    -- {
-    --   "nvim-telescope/telescope-live-grep-args.nvim",
-    --   -- This will not install any breaking changes.
-    --   -- For major updates, this must be adjusted manually.
-    --   version = "^1.0.0",
-    -- },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "tsakirist/telescope-lazy.nvim" },
   },
   keys = {
-    { "<leader>sp", "<cmd>Telescope lazy<cr>", desc = "Plugins list" },
+    { "<leader>sp", "<cmd>Telescope lazy<cr>", desc = "plugins list" },
+    { "<leader>/", "<cmd>Telescope live_grep_args<CR>", desc = "Grep with args" },
+    { "<leader>sw", "<cmd>Telescope live_grep_args<CR>", desc = "Grep with args" },
   },
   opts = {
     defaults = {
@@ -25,20 +23,29 @@ return {
         "--line-number",
         "--column",
         "--smart-case",
-        "--trim", -- add this value
+        "--trim",
+        "--glob",
+        "!{**/.git/*,**/node_modules/*,**/pkg/mod/*,**/yarn.lock,**/.local/*}",
       },
       mappings = {
         n = {
-          ["<M-p>"] = action_layout.toggle_preview,
+          ["<m-p>"] = action_layout.toggle_preview,
         },
         i = {
-          ["<C-u>"] = false,
-          ["<M-p>"] = action_layout.toggle_preview,
+          ["<c-u>"] = false,
+          ["<m-p>"] = action_layout.toggle_preview,
           ["<esc>"] = actions.close,
         },
       },
     },
     pickers = {
+      live_grep = {
+        mappings = {
+          i = {
+            ["<c-space>"] = actions.to_fuzzy_refine,
+          },
+        },
+      },
       current_buffer_fuzzy_find = {
         theme = "dropdown",
         previewer = false,
@@ -70,22 +77,25 @@ return {
         trim_text = true,
       },
     },
-    extensions = {
+  },
+  config = function(_, opts)
+    local _, telescope = pcall(require, "telescope")
+    opts.extensions = {
       lazy = {
-        -- Optional theme (the extension doesn't set a default theme)
+        -- optional theme (the extension doesn't set a default theme)
         -- theme = "dropdown",
-        -- The below configuration options are the defaults
+        -- the below configuration options are the defaults
         show_icon = true,
         mappings = {
-          open_in_browser = "<C-o>",
-          open_in_file_browser = "<M-b>",
-          open_in_find_files = "<C-f>",
-          open_in_live_grep = "<C-g>",
-          open_in_terminal = "<C-t>",
-          open_plugins_picker = "<C-b>",
-          open_lazy_root_find_files = "<C-r>f",
-          open_lazy_root_live_grep = "<C-r>g",
-          change_cwd_to_plugin = "<C-c>d",
+          open_in_browser = "<c-o>",
+          open_in_file_browser = "<m-b>",
+          open_in_find_files = "<c-f>",
+          open_in_live_grep = "<c-g>",
+          open_in_terminal = "<c-t>",
+          open_plugins_picker = "<c-b>",
+          open_lazy_root_find_files = "<c-r>f",
+          open_lazy_root_live_grep = "<c-r>g",
+          change_cwd_to_plugin = "<c-c>d",
         },
         actions_opts = {
           open_in_browser = {
@@ -99,17 +109,29 @@ return {
           relative = "editor",
           style = "minimal",
           border = "rounded",
-          title = "Telescope lazy",
+          title = "telescope lazy",
           title_pos = "center",
           width = 0.5,
           height = 0.5,
         },
       },
-    },
-  },
-  config = function(_, opts)
-    local _, telescope = pcall(require, "telescope")
+      live_grep_args = {
+        auto_quoting = true, -- enable/disable auto-quoting
+        mappings = {
+          i = {
+            ["<c-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+            ["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
+          },
+        },
+      },
+    }
+
     telescope.setup(opts)
+    telescope.load_extension("live_grep_args")
     telescope.load_extension("lazy")
+
+    local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+    vim.keymap.set("n", "<leader>bw", live_grep_args_shortcuts.grep_word_under_cursor_current_buffer)
+    vim.keymap.set("v", "<leader>bw", live_grep_args_shortcuts.grep_word_visual_selection_current_buffer)
   end,
 }
