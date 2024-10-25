@@ -147,7 +147,7 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane "Right"; }
         bind "Alt H" { MoveTab "Left"; }
         bind "Alt L" { MoveTab "Right"; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt u" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         //bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         //bind "Alt k" "Alt Up" { MoveFocus "Up"; }

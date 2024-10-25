@@ -35,10 +35,7 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Proxy
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=$http_proxy
-export all_proxy=socks5://127.0.0.1:7890
-export no_proxy="127.0.0.1,localhost,192.168.*.*,*.jd.com"
+source ~/.proxyrc
 
 set -o emacs
 bindkey -r "^P"

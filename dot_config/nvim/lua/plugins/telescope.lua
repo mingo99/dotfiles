@@ -1,6 +1,5 @@
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
--- local lga_actions = require("telescope-live-grep-args.actions")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -11,7 +10,7 @@ return {
   keys = {
     { "<leader>sp", "<cmd>Telescope lazy<cr>", desc = "plugins list" },
     { "<leader>/", "<cmd>Telescope live_grep_args<CR>", desc = "Grep with args" },
-    { "<leader>sw", "<cmd>Telescope live_grep_args<CR>", desc = "Grep with args" },
+    { "<leader>ga", "<cmd>Telescope git_stash<CR>", desc = "Git Stash" },
   },
   opts = {
     defaults = {
@@ -129,9 +128,5 @@ return {
     telescope.setup(opts)
     telescope.load_extension("live_grep_args")
     telescope.load_extension("lazy")
-
-    local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-    vim.keymap.set("n", "<leader>bw", live_grep_args_shortcuts.grep_word_under_cursor_current_buffer)
-    vim.keymap.set("v", "<leader>bw", live_grep_args_shortcuts.grep_word_visual_selection_current_buffer)
   end,
 }
