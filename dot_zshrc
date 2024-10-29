@@ -65,7 +65,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh --cmd j)"
 
 # starship
-export STARSHIP_CONFIG=/home/mingo/.config/starship/starship.toml
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # set ls_colors
