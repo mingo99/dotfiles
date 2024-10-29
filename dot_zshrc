@@ -34,9 +34,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-# Proxy
-source ~/.proxyrc
-
 set -o emacs
 bindkey -r "^P"
 bindkey -r "^N"
@@ -48,26 +45,13 @@ for key ('^[[B' '^N') bindkey ${key} history-substring-search-down
 for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 
-# lib library
-export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
-
-# Windows host app PATH
-export PATH=/mnt/c/Windows:$PATH
-export PATH=/mnt/c/Windows/System32:$PATH
-export PATH=/mnt/c/MyProgram/VScode/bin:$PATH
-
-# User configuration
-export TERM=tmux-256color
 export EDITOR='nvim'
 
-# Homebrew
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+# Proxy
+source ~/.proxyrc
 
 # Yazi
 bindkey -s '^Y' 'yazi\n'
-
-# cargo
-export PATH=$PATH:~/.cargo/bin
 
 # # fnm
 export XDG_RUNTIME_DIR="$HOME/.cache/xdgr"
@@ -87,22 +71,33 @@ eval "$(starship init zsh)"
 # set ls_colors
 export LS_COLORS="$(vivid generate ~/.config/vivid/my_theme.yml)"
 
-# pfetch
-export PF_ASCII=linux
 
 # alias
 alias ls=lsd
 alias ll="ls -la"
 alias la="ls -a"
 alias lt="ls -t"
-
-alias t="tmux -u"
-alias p=pfetch
-alias ps=procs
 alias lg=lazygit
 alias z=zellij
+
+# For WSL
+if [[ $(uname -r) == *"WSL"* ]]; then
+    # lib library
+    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+    # Windows host app PATH
+    export PATH=/mnt/c/Windows:$PATH
+    export PATH=/mnt/c/Windows/System32:$PATH
+    export PATH=/mnt/c/MyProgram/VScode/bin:$PATH
+    # User configuration
+    export TERM=tmux-256color
+    # pfetch
+    export PF_ASCII=linux
+
+    alias t="tmux -u"
+    alias p=pfetch
+    alias ps=procs
+fi
 
 #########################################
 #####  Application configuration   ######
 #########################################
-export PATH="$PATH:/home/mingo/.local/bin"

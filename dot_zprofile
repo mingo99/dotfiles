@@ -1,0 +1,6 @@
+
+# Created by `pipx` on 2024-09-07 18:15:23
+export PATH="$PATH:/home/mingo/.local/bin"
+
+# Homebrew
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
