@@ -1,6 +1,10 @@
-
-# Created by `pipx` on 2024-09-07 18:15:23
-export PATH="$PATH:/home/mingo/.local/bin"
+# ~/.zprofile: executed by the command interpreter for login shells.
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Homebrew
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+if [ -d "/home/linuxbrew/.linuxbrew/bin" ] ; then
+    PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+fi

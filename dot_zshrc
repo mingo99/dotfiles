@@ -32,7 +32,7 @@ setopt EXTENDED_HISTORY
 setopt append_history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 
 set -o emacs
 bindkey -r "^P"
@@ -47,8 +47,12 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 
 export EDITOR='nvim'
 
+if [ -f .displayrc ]; then
+    source .displayrc
+fi
+
 # Proxy
-source ~/.proxyrc
+source $HOME/.proxyrc
 
 # Yazi
 bindkey -s '^Y' 'yazi\n'
@@ -58,18 +62,18 @@ export XDG_RUNTIME_DIR="$HOME/.cache/xdgr"
 eval "$(fnm env --use-on-cd)"
 
 # fuzzy finder
-source ~/.fzfrc
+source $HOME/.fzfrc
 eval "$(fzf --zsh)"
 
 # zoxide
 eval "$(zoxide init zsh --cmd j)"
 
 # starship
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # set ls_colors
-export LS_COLORS="$(vivid generate ~/.config/vivid/my_theme.yml)"
+export LS_COLORS="$(vivid generate $HOME/.config/vivid/my_theme.yml)"
 
 
 # alias
