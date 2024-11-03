@@ -47,12 +47,15 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 
 export EDITOR='nvim'
 
+# Display
 if [ -f .displayrc ]; then
     source .displayrc
 fi
 
 # Proxy
-source $HOME/.proxyrc
+if [ -f .proxyrc ]; then
+    source $HOME/.proxyrc
+fi
 
 # Yazi
 bindkey -s '^Y' 'yazi\n'
