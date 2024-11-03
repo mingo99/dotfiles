@@ -1,5 +1,6 @@
-local action_layout = require("telescope.actions.layout")
+local _, telescope = pcall(require, "telescope")
 local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -11,6 +12,8 @@ return {
     { "<leader>sp", "<cmd>Telescope lazy<cr>", desc = "plugins list" },
     { "<leader>/", "<cmd>Telescope live_grep_args<CR>", desc = "Grep with args" },
     { "<leader>ga", "<cmd>Telescope git_stash<CR>", desc = "Git Stash" },
+    { "<leader>bw", LazyVim.pick("grep_string"), { cwd = vim.fn.expand("%:p"), word_match = "-w" }, desc = "Grep word in current buffer" },
+    { "<leader>bw", LazyVim.pick("grep_string"), { cwd = vim.fn.expand("%:p") }, mode = "v", desc = "Grep word in current buffer" },
   },
   opts = {
     defaults = {
@@ -78,7 +81,6 @@ return {
     },
   },
   config = function(_, opts)
-    local _, telescope = pcall(require, "telescope")
     opts.extensions = {
       lazy = {
         -- optional theme (the extension doesn't set a default theme)
