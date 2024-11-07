@@ -9,6 +9,9 @@ $character"""
 add_newline = false
 scan_timeout = 30
 
+[hostname]
+style = "bold green"
+
 [character]
 success_symbol = '[➜](bold green)'
 error_symbol = "[➜](bold red)"
