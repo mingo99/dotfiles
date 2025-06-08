@@ -5,6 +5,5 @@
 .config/lazygit/state.yml
 .config/yazi/plugins/
 .config/yazi/flavors/
-.config/yazi/package.toml
 .config/tmux/plugins/
 *.log
