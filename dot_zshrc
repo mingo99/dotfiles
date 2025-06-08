@@ -28,11 +28,13 @@ zinit load "zsh-users/zsh-syntax-highlighting"
 ##########################################
 #####     System configuration    #######
 #########################################
-setopt EXTENDED_HISTORY
-setopt append_history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=$HOME/.zsh_history
+if [[ $(uname -s) == "Linux" ]]; then
+    setopt EXTENDED_HISTORY
+    setopt append_history
+    HISTSIZE=10000
+    SAVEHIST=10000
+    HISTFILE=$HOME/.zsh_history
+fi
 
 set -o emacs
 bindkey -r "^P"
@@ -53,12 +55,9 @@ if [ -f .displayrc ]; then
 fi
 
 # Proxy
-if [ -f .proxyrc ]; then
+if [ -f $HOME/.proxyrc ]; then
     source $HOME/.proxyrc
 fi
-
-# Yazi
-bindkey -s '^Y' 'yazi\n'
 
 # # fnm
 export XDG_RUNTIME_DIR="$HOME/.cache/xdgr"
@@ -77,7 +76,6 @@ eval "$(starship init zsh)"
 
 # set ls_colors
 export LS_COLORS="$(vivid generate $HOME/.config/vivid/my_theme.yml)"
-
 
 # alias
 alias ls=lsd
