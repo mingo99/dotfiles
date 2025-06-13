@@ -19,9 +19,9 @@ config.font = wezterm.font({
 })
 config.font_size = 12
 config.color_scheme = "Tokyo Night (Gogh)"
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.8
 config.text_background_opacity = 1
-config.macos_window_background_blur = 15
+config.macos_window_background_blur = 20
 
 -- Tab bar
 config.use_fancy_tab_bar = true
@@ -34,12 +34,7 @@ config.window_frame = {
 	font_size = 12.0,
 }
 
-config.window_padding = {
-	left = 2,
-	right = 2,
-	top = 0,
-	bottom = 0,
-}
+config.window_padding = { left = 2, right = 2, top = 0, bottom = 0 }
 
 config.colors = {
 	tab_bar = {
