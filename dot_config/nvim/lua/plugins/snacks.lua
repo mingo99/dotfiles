@@ -43,8 +43,17 @@ return {
     },
     notifier = { style = "fancy" },
     picker = {
+      formatters = { file = { truncate = 100 } },
       layouts = { default = { layout = { width = 0.9, height = 0.9 } } },
       matcher = { frecency = true },
+      win = {
+        input = {
+          keys = {
+            ["<C-n>"] = { "history_forward", mode = { "i", "n" } },
+            ["<C-p>"] = { "history_back", mode = { "i", "n" } },
+          },
+        },
+      },
     },
     styles = { lazygit = { width = 0, height = 0 } },
   },

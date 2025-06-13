@@ -26,6 +26,7 @@ return {
           fg = commentColor,
         }
         hl.DiagnosticUnnecessary = { fg = commentColor }
+        -- hl.SnacksPickerMatch = { fg = "#ff808a" }
       end,
     },
   },
