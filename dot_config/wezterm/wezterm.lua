@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
+local keys = require("keymaps")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -58,6 +59,8 @@ config.keys = {
 	{ key = "h", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
 	{ key = "l", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
 }
+
+config.keys = keys
 
 -- Finally, return the configuration to wezterm:
 return config
