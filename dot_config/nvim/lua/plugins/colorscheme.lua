@@ -11,6 +11,7 @@ return {
       },
       on_colors = function(colors)
         -- transparent for statusline
+        colors.border = "#3B4261"
         colors.bg_statusline = colors.none
         colors.comment = "#6272a4"
       end,
@@ -26,7 +27,6 @@ return {
           fg = commentColor,
         }
         hl.DiagnosticUnnecessary = { fg = commentColor }
-        -- hl.SnacksPickerMatch = { fg = "#ff808a" }
       end,
     },
   },

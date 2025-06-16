@@ -16,6 +16,8 @@ return {
       yazi_floating_window_border = "rounded",
       keymaps = {
         show_help = "<f1>",
+        open_for_directories = false,
+        open_file_in_vertical_split = false,
       },
     },
   },

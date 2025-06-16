@@ -1,21 +1,23 @@
 return {
   "folke/snacks.nvim",
+  -- stylua: ignore
   keys = {
-    {
-      "<space>sB",
+    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find Files" },
+    { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+    { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+    { "<space>sB",
       function()
         local curr_path = vim.fn.expand("%:p")
         Snacks.picker.grep({ ---@diagnostic disable-line: undefined-field
+          title = "Grep Lines",
           finder = "grep",
-          buffers = false,
           ignored = true,
           hidden = true,
           live = true,
-          need_search = false,
           supports_live = true,
-          layout = { preview = false, preset = "ivy_split" }, ---@diagnostic disable-line
+          need_search = false,
           dirs = { curr_path },
-          title = "Grep Lines",
+          layout = { preview = false }, ---@diagnostic disable-line
           format = function(item)
             local ret = {} ---@type snacks.picker.Highlight[]
             local line_count = vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf())
@@ -43,9 +45,10 @@ return {
     },
     notifier = { style = "fancy" },
     picker = {
+      sources = { buffers = { layout = { preset = "ivy" } } },
       formatters = { file = { truncate = 100 } },
       layouts = { default = { layout = { width = 0.9, height = 0.9 } } },
-      matcher = { frecency = true },
+      matcher = { cwd_bonus = true, frecency = true, history_bonus = true },
       win = {
         input = {
           keys = {
