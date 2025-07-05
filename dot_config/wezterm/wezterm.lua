@@ -49,17 +49,6 @@ config.inactive_pane_hsb = {
 }
 -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
-config.keys = {
-	-- Send "CTRL-B" to the terminal when pressing CTRL-B, CTRL-B
-	{ key = "b", mods = "LEADER|CTRL", action = act.SendKey({ key = "b", mods = "CTRL" }) },
-	{ key = "L", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "J", mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "k", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
-	{ key = "j", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
-	{ key = "h", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
-	{ key = "l", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
-}
-
 config.keys = keys
 
 -- Finally, return the configuration to wezterm:
