@@ -106,3 +106,7 @@ fi
 #########################################
 #####  Application configuration   ######
 #########################################
+# python
+if [ -d $HOME/.venv/default ]; then
+    source $HOME/.venv/default/bin/activate
+fi
