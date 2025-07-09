@@ -45,5 +45,5 @@ hash = "c0bf69ad2c44005892d586e9693993c6"
 
 [[flavor.deps]]
 use = "mingo99/tokyonight"
-rev = "374715a"
-hash = "a243aa3818fe91cf205517054a36b88a"
+rev = "005118e"
+hash = "104dd0f5e87aa4fea8f8e68ffa689a4e"
