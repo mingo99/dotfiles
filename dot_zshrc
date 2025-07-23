@@ -29,9 +29,10 @@ zinit load "zsh-users/zsh-autosuggestions"
 ##########################################
 #####     System configuration    #######
 #########################################
+setopt EXTENDED_HISTORY
+setopt append_history
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 if [[ $(uname -s) == "Linux" ]]; then
-    setopt EXTENDED_HISTORY
-    setopt append_history
     HISTSIZE=10000
     SAVEHIST=10000
     HISTFILE=$HOME/.zsh_history
