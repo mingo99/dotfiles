@@ -112,3 +112,6 @@ fi
 if [ -d $HOME/.venv/default ]; then
     source $HOME/.venv/default/bin/activate
 fi
+
+# gemini-cli
+export GOOGLE_CLOUD_PROJECT="beaming-opus-469208-j2"
