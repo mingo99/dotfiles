@@ -1,6 +1,5 @@
 **/.git/
 **/.git/**
-.config/nvim/lazyvim.json
 .config/nvim/lazy-lock.json
 .config/lazygit/state.yml
 .config/yazi/plugins/

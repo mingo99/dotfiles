@@ -4,6 +4,16 @@ return {
     linters_by_ft = {
       verilog = { "verilator" },
       systemverilog = { "verilator" },
+      markdown = { "markdownlint-cli2" },
+    },
+    linters = {
+      ["markdownlint-cli2"] = {
+        args = {
+          "--config",
+          vim.fn.stdpath("config") .. "/lua/plugins/cfg_linters/global.markdownlint-cli2.jsonc",
+          "--",
+        },
+      },
     },
   },
 }

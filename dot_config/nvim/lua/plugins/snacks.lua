@@ -5,7 +5,7 @@ return {
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find Files" },
     { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
     { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-    { "<space>sB",
+    { "<leader>sB",
       function()
         local curr_path = vim.fn.expand("%:p")
         Snacks.picker.grep({ ---@diagnostic disable-line: undefined-field
