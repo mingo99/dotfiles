@@ -1,18 +1,17 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --24-bit-color=never --syntax-theme="TwoDark"
+  pagers:
+    - pager: delta --dark --paging=never --syntax-theme="tokyonight_moon"
+      colorArg: always
   # branchLogCmd: git log --color --graph --pretty=format:'%Cred%h%Creset - %C(bold blue)%an,%Creset %Cgreen%cr%C(yellow)%d%Creset ':' %s' --abbrev-commit {{branchName}} --
 gui:
   border: rounded
-  showBottomLine: false
-  theme:
-    activeBorderColor: [cyan, bold]
-    inactiveBorderColor: [white]
-    optionsTextColor: [blue]
-    selectedLineBgColor: [blue]
+  showBottomLine: true
+  # theme:
+  #   activeBorderColor: [cyan, bold]
+  #   inactiveBorderColor: [white]
+  #   optionsTextColor: [blue]
+  #   selectedLineBgColor: [blue]
 notARepository: skip # one of: 'prompt' | 'create' | 'skip' | 'quit'
 keybinding:
   universal:
