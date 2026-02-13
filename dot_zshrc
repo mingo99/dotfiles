@@ -50,6 +50,7 @@ for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 
 export EDITOR='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Display
 if [ -f .displayrc ]; then
