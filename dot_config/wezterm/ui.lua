@@ -5,11 +5,11 @@ function M.apply_to_config(config)
 	-- color scheme
 	config.color_scheme_dirs = { wezterm.config_dir .. "/colors" }
 	config.color_scheme = "tokyonight_night"
-	config.window_background_image = wezterm.config_dir .. "/background.jpg"
+	config.window_background_image = wezterm.config_dir .. "/orange.png"
 	config.window_background_image_hsb = {
-		brightness = 0.3,
+		brightness = 0.2,
 		hue = 1.0,
-		saturation = 1.0,
+		saturation = 0.9,
 	}
 	-- For example, changing the initial geometry for new windows:
 	config.initial_cols = 120
@@ -21,7 +21,7 @@ function M.apply_to_config(config)
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	})
 	config.font_size = 12
-	config.window_background_opacity = 0.8
+	config.window_background_opacity = 1
 	config.text_background_opacity = 1
 	config.macos_window_background_blur = 20
 

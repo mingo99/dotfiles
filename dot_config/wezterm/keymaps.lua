@@ -39,9 +39,24 @@ map("j", LC_MODS, act.ActivatePaneDirection("Down"))
 map("k", LC_MODS, act.ActivatePaneDirection("Up"))
 map("L", LS_MODS, act.SplitHorizontal({ domain = "CurrentPaneDomain" }))
 map("J", LS_MODS, act.SplitVertical({ domain = "CurrentPaneDomain" }))
+map(
+	"r",
+	"LEADER",
+	act.PromptInputLine({
+		description = "Enter new name for tab",
+		action = wezterm.action_callback(function(window, pane, line)
+			-- line will be `nil` if they hit escape without entering anything
+			-- An empty string if they just hit enter
+			-- Or the actual line of text they wrote
+			if line then
+				window:active_tab():set_title(line)
+			end
+		end),
+	})
+)
 
 function M.apply_to_config(config)
-	config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+	config.leader = { key = "b", mods = "ALT", timeout_milliseconds = 1000 }
 	config.keys = keys
 end
 
