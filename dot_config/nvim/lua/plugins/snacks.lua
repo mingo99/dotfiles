@@ -1,39 +1,42 @@
+local function grep_current_file()
+  local curr_path = vim.fn.expand("%:p")
+  Snacks.picker.grep({ ---@diagnostic disable-line: undefined-field
+    title = "Grep Lines",
+    finder = "grep",
+    ignored = true,
+    hidden = true,
+    live = true,
+    supports_live = true,
+    need_search = false,
+    dirs = { curr_path },
+    layout = { preview = false }, ---@diagnostic disable-line
+    format = function(item)
+      local ret = {} ---@type snacks.picker.Highlight[]
+      local line_count = vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf())
+      local idx = Snacks.picker.util.align(tostring(item.idx), #tostring(line_count), { align = "right" })
+      ret[#ret + 1] = { idx, "LineNr", virtual = true }
+      ret[#ret + 1] = { "  ", virtual = true }
+      if item.line then
+        if item.positions then
+          local offset = Snacks.picker.highlight.offset(ret)
+          Snacks.picker.highlight.matches(ret, item.positions, offset)
+        end
+        Snacks.picker.highlight.format(item, item.line, ret)
+        table.insert(ret, { " " })
+      end
+      return ret
+    end,
+  })
+end
+
 return {
   "folke/snacks.nvim",
-  -- stylua: ignore
   keys = {
-    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find Files" },
+    -- stylua: ignore start
     { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
     { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-    { "<leader>sB",
-      function()
-        local curr_path = vim.fn.expand("%:p")
-        Snacks.picker.grep({ ---@diagnostic disable-line: undefined-field
-          title = "Grep Lines",
-          finder = "grep",
-          ignored = true,
-          hidden = true,
-          live = true,
-          supports_live = true,
-          need_search = false,
-          dirs = { curr_path },
-          layout = { preview = false }, ---@diagnostic disable-line
-          format = function(item)
-            local ret = {} ---@type snacks.picker.Highlight[]
-            local line_count = vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf())
-            local idx = Snacks.picker.util.align(tostring(item.idx), #tostring(line_count), { align = "right" })
-            ret[#ret + 1] = { idx, "LineNr", virtual = true }
-            ret[#ret + 1] = { "  ", virtual = true }
-            if item.line then
-              Snacks.picker.highlight.format(item, item.line, ret)
-              table.insert(ret, { " " })
-            end
-            return ret
-          end,
-        })
-      end,
-      desc = "Grep current buffer",
-    },
+    { "<leader>sB", function() grep_current_file() end, desc = "Grep current buffer"},
+    -- stylua: ignore end
   },
   opts = {
     dashboard = {
