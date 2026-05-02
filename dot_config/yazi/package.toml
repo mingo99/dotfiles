@@ -1,42 +1,42 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:lsar"
-rev = "cbc4450"
-hash = "f9cdfb0e78ecdf6ce5ed5d3b3d1beaa8"
+rev = "e84f4fe"
+hash = "c1c66e28145e28e581e74e2d6da4fdf1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "cbc4450"
-hash = "1adc12c2b2b025411ab61eb8f0879574"
+rev = "e84f4fe"
+hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "cbc4450"
-hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
+rev = "e84f4fe"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "cbc4450"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "e84f4fe"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "cbc4450"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "e84f4fe"
+hash = "6fa6a05a81c98dd000fbca3cca6e9682"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "cbc4450"
-hash = "d6f60c24d8c0cf57a855bf46115b2502"
+rev = "e84f4fe"
+hash = "4c0260feb50ea2437380690ffc241da7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:sudo-demo"
-rev = "cbc4450"
+rev = "e84f4fe"
 hash = "78b1fa05ed32141b25fdbe9849b94b4f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "cbc4450"
-hash = "cc8da55f1deda45ee3787cc97b58ffc9"
+rev = "e84f4fe"
+hash = "f6e6a829c6dc6c900a75bebe422a5c33"
 
 [[plugin.deps]]
 use = "wylie102/duckdb"
@@ -44,11 +44,6 @@ rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[flavor.deps]]
-use = "BennyOe/tokyo-night"
-rev = "5f56364"
-hash = "c0bf69ad2c44005892d586e9693993c6"
-
-[[flavor.deps]]
 use = "mingo99/tokyonight"
-rev = "005118e"
-hash = "104dd0f5e87aa4fea8f8e68ffa689a4e"
+rev = "1419163"
+hash = "6ba66de101f53a08b6c1f98cf147d7cf"
