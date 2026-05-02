@@ -38,7 +38,7 @@ if [[ $(uname -s) == "Linux" ]]; then
     HISTFILE=$HOME/.zsh_history
 fi
 
-set -o emacs
+set -o vi
 bindkey -r "^P"
 bindkey -r "^N"
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
