@@ -46,6 +46,7 @@ return {
         { section = "startup" },
       },
     },
+    image = { enabled = true },
     notifier = { style = "fancy" },
     picker = {
       sources = { buffers = { layout = { preset = "ivy" } } },
