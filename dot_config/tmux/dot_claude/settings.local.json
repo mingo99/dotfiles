@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/mingo/.config/agent-tracker/bin/**)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(chmod +x /Users/mingo/.config/tmux/scripts/*.sh /Users/mingo/.config/tmux/scripts/*.py /Users/mingo/.config/tmux/tmux-status/*.sh /Users/mingo/.config/tmux/tmux-status/*.py)",
+      "Bash(chezmoi diff *)"
+    ]
+  }
+}

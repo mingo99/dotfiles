@@ -53,15 +53,8 @@ if [[ -z "$sessions" ]]; then
   exit 0
 fi
 
-"$HOME/.config/tmux/tmux-status/tracker_cache.sh" 2>/dev/null || true
-
-CACHE_FILE="/tmp/tmux-tracker-cache.json"
-tracker_state=""
-if [[ -f "$CACHE_FILE" ]]; then
-  tracker_state=$(cat "$CACHE_FILE" 2>/dev/null || true)
-fi
-
 question_state=$(tmux list-panes -a -F '#{session_id}::#{@op_question_pending}' 2>/dev/null || true)
+agent_state=$(tmux list-panes -a -F '#{session_id}::#{@agent_status}::#{@agent_unread}' 2>/dev/null || true)
 
 get_session_icon() {
   local sid="$1"
@@ -83,19 +76,12 @@ get_session_icon() {
   watching_win=$(tmux list-windows -t "$sid" -F '#{@watching}' 2>/dev/null | grep -m1 '^1$' || true)
   [[ -n "$watching_win" ]] && has_watch=1
 
-  if [[ -n "$tracker_state" ]]; then
-    local result
-    result=$(echo "$tracker_state" | jq -r --arg sid "$sid" '
-      .tasks // [] | .[] | select(.session_id == $sid) |
-      if .status == "completed" and .acknowledged != true then "waiting"
-      elif .status == "in_progress" then "in_progress"
-      else empty end
-    ' 2>/dev/null | head -1 || true)
-    case "$result" in
-      waiting) has_bell=1 ;;
-      in_progress) has_watch=1 ;;
-    esac
-  fi
+  local agent_unread agent_running
+  agent_unread=$(awk -F '::' -v sid="$sid" '$1 == sid && $3 == "1" {print; exit}' <<< "$agent_state" || true)
+  [[ -n "$agent_unread" ]] && has_bell=1
+
+  agent_running=$(awk -F '::' -v sid="$sid" '$1 == sid && $2 == "running" {print; exit}' <<< "$agent_state" || true)
+  [[ -n "$agent_running" ]] && has_watch=1
 
   if (( has_question )); then
     printf '❓'

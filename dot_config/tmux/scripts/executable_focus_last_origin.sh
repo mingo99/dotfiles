@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-F="$HOME/.config/agent-tracker/run/jump_back.txt"
+F="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/run/jump_back.txt"
 if [[ ! -f "$F" ]]; then
   exit 0
 fi

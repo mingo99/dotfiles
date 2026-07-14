@@ -3,7 +3,7 @@
 # Called after TPM/plugins have loaded so the tokyonight format is already set.
 set -euo pipefail
 
-ICON='#(~/.config/tmux/tmux-status/window_task_icon.sh "#{window_id}" "#{@unread}" "#{@watching}" "#{@watch_failed}")'
+ICON='#(~/.config/tmux/tmux-status/window_task_icon.sh "#{window_id}" "#{@unread}" "#{@watching}" "#{@watch_failed}" "#{window_active}")'
 
 current=$(tmux show -gwv window-status-format 2>/dev/null || true)
 if [[ -n "$current" ]] && [[ "$current" != *"window_task_icon"* ]]; then

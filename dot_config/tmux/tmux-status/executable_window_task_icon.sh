@@ -5,7 +5,9 @@ window_id="${1:-}"
 unread="${2:-0}"
 watching="${3:-0}"
 watch_failed="${4:-0}"
+window_active="${5:-0}"
 [[ -z "$window_id" ]] && exit 0
+[[ "$window_active" == "1" ]] && exit 0
 
 has_bell=0
 has_watch=0
@@ -20,29 +22,19 @@ has_fail=0
 question_pane=$(tmux list-panes -t "$window_id" -F '#{@op_question_pending}' 2>/dev/null | grep -F -m1 -x '1' || true)
 [[ -n "$question_pane" ]] && has_question=1
 
-CACHE_FILE="/tmp/tmux-tracker-cache.json"
-if [[ -f "$CACHE_FILE" ]]; then
-  state=$(cat "$CACHE_FILE" 2>/dev/null || true)
-  if [[ -n "$state" ]]; then
-    result=$(echo "$state" | jq -r --arg wid "$window_id" '
-      .tasks // [] | .[] | select(.window_id == $wid) |
-      if .status == "completed" and .acknowledged != true then "waiting"
-      elif .status == "in_progress" then "in_progress"
-      else empty end
-    ' 2>/dev/null | head -1 || true)
-    case "$result" in
-      waiting) has_bell=1 ;;
-      in_progress) has_watch=1 ;;
-    esac
-  fi
-fi
+agent_state=$(tmux list-panes -t "$window_id" -F '#{@agent_status}:#{@agent_unread}' 2>/dev/null || true)
+agent_unread=$(grep -m1 ':1$' <<< "$agent_state" || true)
+[[ -n "$agent_unread" ]] && has_bell=1
+
+agent_running=$(grep -m1 '^running:' <<< "$agent_state" || true)
+[[ -n "$agent_running" ]] && has_watch=1
 
 if (( has_question )); then
-  printf '❓'
+  printf '#[fg=#7dcfff]󰋗'
 elif (( has_fail )); then
-  printf '❌'
+  printf '#[fg=#f7768e]󰅖'
 elif (( has_bell )); then
-  printf '🔔'
+  printf '#[fg=#9ece6a]󰄬'
 elif (( has_watch )); then
-  printf '⏳'
+  printf '#[fg=#e0af68]󰔟'
 fi
