@@ -23,6 +23,13 @@ zplugin-update() {
   done
 }
 
+# zsh-vi-mode normally defers its init (zvm_init) to the first prompt, AFTER
+# .zshrc has finished — at that point it overwrites keybindings set earlier,
+# which breaks fzf and history-substring-search. Initialize at source time
+# instead, so the modules loaded after plugins.zsh (bindings, fzf) win:
+# https://github.com/jeffreytse/zsh-vi-mode#initialization-mode
+ZVM_INIT_MODE=sourcing
+
 _zplugin_load zsh-users zsh-autosuggestions
 _zplugin_load zsh-users zsh-history-substring-search
 _zplugin_load jeffreytse zsh-vi-mode

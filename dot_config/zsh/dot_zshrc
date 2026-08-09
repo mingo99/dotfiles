@@ -60,6 +60,12 @@ for module in plugins bindings aliases fzf prompt; do
 done
 
 # =========================================================
+# LS_COLORS
+# =========================================================
+# set ls_colors
+export LS_COLORS="$(vivid generate $HOME/.config/vivid/my_theme.yml)"
+
+# =========================================================
 # Node / FNM
 # =========================================================
 # Initialize fnm
@@ -76,7 +82,7 @@ eval "$(zoxide init zsh --cmd j)"
 # =========================================================
 if [ -f $HOME/.proxyrc ]; then
     source $HOME/.proxyrc
-    proxy on
+    [[ -z "$http_proxy" ]] && proxy on
 fi
 
 # =========================================================
