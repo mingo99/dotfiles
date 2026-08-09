@@ -6,3 +6,5 @@
 .config/yazi/flavors/
 .config/tmux/plugins/
 *.log
+.config/zsh/plugins
+dot_secretsrc

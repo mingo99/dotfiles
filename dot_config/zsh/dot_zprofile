@@ -1,9 +1,5 @@
-# ~/.zprofile: executed by the command interpreter for login shells.
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
+# Login shell: PATH and platform toolchain
+#
 # Homebrew
 if [[ $(uname -s) == "Darwin" ]]; then
     if [ -d "/opt/homebrew" ] ; then

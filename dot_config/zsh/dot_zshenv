@@ -1,0 +1,33 @@
+# ~/.config/zsh/.zshenv
+
+# ---------- XDG base directories ----------
+# Centralizes config/cache/data locations
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_RUNTIME_DIR="$HOME/.local/run"
+
+# ---------- Editor ----------
+# Default editor used by git, crontab, etc.
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# ---------- LS_COLORS ----------
+# set ls_colors
+export LS_COLORS="$(vivid generate $HOME/.config/vivid/my_theme.yml)"
+
+# ---------- Pager ----------
+if command -v bat >/dev/null 2>&1; then
+  export MANPAGER="bat -l man -p"
+fi
+
+# ---------- GPG ----------
+[[ -t 0 ]] && export GPG_TTY=$(tty)
+
+# ---------- Starship ----------
+export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
+
+# ---------- PATH ----------
+# Personal binaries/scripts
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,121 @@
+# Powerful but minimal zsh configuration
+# Author: Mingo
+#
+# Uses:
+#   Plugins:      fast-syntax-highlighting, zsh-autosuggestions,
+#                 zsh-history-substring-search, zsh-vi-mode
+#   Prompt:       starship
+#   Navigation:   zoxide, fzf, fd
+#   CLI tools:    lsd, bat, nvim, ripgrep
+#   Node:         fnm
+
+# =========================================================
+# History
+# =========================================================
+
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+
+# =========================================================
+# Shell behaviour
+# =========================================================
+setopt AUTOCD
+setopt NOBEEP
+setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
+
+# =========================================================
+# Completion
+# =========================================================
+
+# Load completion system
+autoload -Uz compinit
+
+# Initialize completion with cached metadata file
+mkdir -p "$XDG_CACHE_HOME/zsh"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+
+# Enable interactive completion menu selection
+zstyle ':completion:*' menu select
+
+# Make completion case-insensitive
+# Example: "doc" can complete to "Documents"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # lowercase input matches upper and lower
+
+# =========================================================
+# Modular Config Files
+# =========================================================
+
+# Modular zsh config — sources per-concern modules
+for module in plugins bindings aliases fzf prompt; do
+    [[ -f "$ZDOTDIR/$module.zsh" ]] && source "$ZDOTDIR/$module.zsh"
+done
+
+# =========================================================
+# Node / FNM
+# =========================================================
+# Initialize fnm
+eval "$(fnm env --use-on-cd)"
+
+# =========================================================
+# Smart directory navigation & Yazi
+# =========================================================
+# Initialize zoxide
+eval "$(zoxide init zsh --cmd j)"
+
+# =========================================================
+# Proxy
+# =========================================================
+if [ -f $HOME/.proxyrc ]; then
+    source $HOME/.proxyrc
+    proxy on
+fi
+
+# =========================================================
+# Secrets
+# =========================================================
+if [ -f $HOME/.secretsrc ]; then
+    source $HOME/.secretsrc
+fi
+
+# =========================================================
+# Display
+# =========================================================
+if [ -f $HOME/.displayrc ]; then
+    source $HOME/.displayrc
+fi
+
+# =========================================================
+# Python
+# =========================================================
+if [ -d $HOME/.venv/default ]; then
+    source $HOME/.venv/default/bin/activate
+fi
+
+# =========================================================
+# WSL
+# =========================================================
+if [[ $(uname -r) == *"WSL"* ]]; then
+    # lib library
+    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+    # Windows host app PATH
+    export PATH=/mnt/c/Windows:$PATH
+    export PATH=/mnt/c/Windows/System32:$PATH
+    export PATH=/mnt/c/MyProgram/VScode/bin:$PATH
+    # User configuration
+    export TERM=tmux-256color
+    # pfetch
+    export PF_ASCII=linux
+
+    alias t="tmux -u"
+    alias p=pfetch
+    alias ps=procs
+fi
