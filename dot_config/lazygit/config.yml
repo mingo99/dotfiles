@@ -1,17 +1,33 @@
 ---
 git:
   pagers:
-    - pager: delta --dark --paging=never --syntax-theme="tokyonight_moon"
+    - pager: delta --dark --paging=never --syntax-theme="tokyonight_night"
       colorArg: always
   # branchLogCmd: git log --color --graph --pretty=format:'%Cred%h%Creset - %C(bold blue)%an,%Creset %Cgreen%cr%C(yellow)%d%Creset ':' %s' --abbrev-commit {{branchName}} --
 gui:
   border: rounded
   showBottomLine: true
-  # theme:
-  #   activeBorderColor: [cyan, bold]
-  #   inactiveBorderColor: [white]
-  #   optionsTextColor: [blue]
-  #   selectedLineBgColor: [blue]
+  nerdFontsVersion: "3"
+  # Tokyonight Night -- official palette.
+  # Generated from folke/tokyonight.nvim lua/tokyonight/extra/lazygit.lua;
+  # night = storm palette (lua/tokyonight/colors/storm.lua) + bg #1a1b26.
+  # Matches Ghostty "TokyoNight Night" so terminal + lazygit share one palette.
+  theme:
+    activeBorderColor: ["#ff9e64", bold] # orange
+    inactiveBorderColor: ["#27a1b9"] # border_highlight = blend_bg(blue1 #2ac3de, 0.8)
+    searchingActiveBorderColor: ["#ff9e64", bold] # orange (same as active, by upstream design)
+    optionsTextColor: ["#7aa2f7"] # blue
+    selectedLineBgColor: ["#283457"] # bg_visual = blend_bg(blue0 #3d59a1, 0.4)
+    cherryPickedCommitFgColor: ["#7aa2f7"] # blue
+    cherryPickedCommitBgColor: ["#bb9af7"] # magenta
+    markedBaseCommitFgColor: ["#7aa2f7"] # blue -- no-op in 0.60.0, see note below
+    markedBaseCommitBgColor: ["#e0af68"] # yellow -- no-op in 0.60.0
+    unstagedChangesColor: ["#db4b4b"] # red1
+    defaultFgColor: ["#c0caf5"] # fg
+    # markedBaseCommitFg/BgColor are accepted by the schema but never read by lazygit
+    # 0.60.0: pkg/theme/theme.go assigns MarkedBaseCommitTextStyle, but nothing ever
+    # consumes it. The "↑↑↑ Will rebase from here ↑↑↑" marker is hardcoded to
+    # style.FgYellow in pkg/gui/presentation/commits.go. Kept for forward-compat.
 notARepository: skip # one of: 'prompt' | 'create' | 'skip' | 'quit'
 keybinding:
   universal:

@@ -1,0 +1,29 @@
+#!/bin/sh
+# Rebuild bat's asset cache.
+#
+# bat NEVER rebuilds its cache automatically. See
+# src/bin/bat/assets.rs :: assets_from_cache_or_binary():
+#     let custom_assets = if use_custom_assets { HighlightingAssets::from_cache(cache_dir).ok() } else { None };
+#     Ok(custom_assets.unwrap_or_else(HighlightingAssets::from_binary))
+# A missing cache makes bat silently fall back to the *built-in* asset set, so
+# the custom themes under ~/.config/bat/themes are unknown and both
+# `bat --theme=...` and delta's `delta.syntax-theme` silently use the default
+# theme instead.
+#
+# This is a chezmoi `run_onchange_` script, so it re-runs whenever its own
+# content changes. The hashes below change whenever one of the managed theme
+# files or the bat config changes, which is exactly when the cache goes stale.
+
+set -eu
+
+# sha256 of managed inputs (drives the re-run trigger):
+#   tokyonight_night.tmTheme  {{ include "dot_config/bat/themes/tokyonight_night.tmTheme" | sha256sum }}
+#   tokyonight_moon.tmTheme   {{ include "dot_config/bat/themes/tokyonight_moon.tmTheme" | sha256sum }}
+#   bat/config                {{ include "dot_config/bat/config" | sha256sum }}
+
+if command -v bat >/dev/null 2>&1; then
+    bat cache --build >/dev/null
+    echo "bat: asset cache rebuilt"
+else
+    echo "bat: not installed, skipping asset cache rebuild" >&2
+fi
