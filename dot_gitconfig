@@ -1,0 +1,54 @@
+[user]
+	email = 2839131656@qq.com
+	name = mingo99
+[http]
+	proxy = http://127.0.0.1:7897
+[https]
+	proxy = http://127.0.0.1:7897
+
+[color]
+  ui = auto
+
+[core]
+	pager = delta
+	editor = nvim
+	autocrlf = input
+	# Treat whitespace issues as errors
+	whitespace = trailing-space,space-before-tab
+
+[interactive]
+	diffFilter = delta --color-only
+
+[include]
+  path = ~/.config/git/tokyonight_night.gitconfig
+
+[delta]
+	navigate = true
+	light = false
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = tokyonight_night
+	features = decorations
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+
+[merge]
+	conflictstyle = zdiff3
+	tool = nvimdiff
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	tool = nvimdiff
+	# Better submodule diffs
+	submodule = log
+
+[difftool]
+	prompt = false
+
+[mergetool]
+	prompt = false
+	keepBackup = false
