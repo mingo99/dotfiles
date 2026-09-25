@@ -27,3 +27,8 @@ export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 # ---------- PATH ----------
 # Personal binaries/scripts
 export PATH="$HOME/.local/bin:$PATH"
+
+# ---------- Bun ----------
+# Global packages and executables
+export BUN_INSTALL_GLOBAL_DIR="$XDG_DATA_HOME/bun/install/global"
+export BUN_INSTALL_BIN="$HOME/.local/bin"

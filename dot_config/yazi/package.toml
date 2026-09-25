@@ -1,42 +1,37 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:lsar"
-rev = "e84f4fe"
+rev = "f703392"
 hash = "c1c66e28145e28e581e74e2d6da4fdf1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "e84f4fe"
-hash = "f0c8c378184d5f8abd1b095a443d336d"
+rev = "f703392"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "e84f4fe"
+rev = "f703392"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "e84f4fe"
+rev = "f703392"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "e84f4fe"
-hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+rev = "f703392"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "e84f4fe"
-hash = "4c0260feb50ea2437380690ffc241da7"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:sudo-demo"
-rev = "e84f4fe"
-hash = "78b1fa05ed32141b25fdbe9849b94b4f"
+rev = "f703392"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "e84f4fe"
-hash = "f6e6a829c6dc6c900a75bebe422a5c33"
+rev = "f703392"
+hash = "4f2a05edce73aef2bceb2ee2c134c8f2"
 
 [[plugin.deps]]
 use = "wylie102/duckdb"
@@ -45,5 +40,5 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[flavor.deps]]
 use = "mingo99/tokyonight"
-rev = "1419163"
-hash = "6ba66de101f53a08b6c1f98cf147d7cf"
+rev = "d812af6"
+hash = "9932041c36eea9a23daf0a880f104067"
